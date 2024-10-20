@@ -2,11 +2,12 @@ import { StyleSheet } from 'react-native';
 
 const ProfileStyle = StyleSheet.create({
     container: {
-    flexGrow: 1,
+      flexGrow: 1,
       backgroundColor: '#000000',
       alignItems: 'stretch',
       flexDirection: 'column',
       justifyContent: 'center',
+      height: "10%"
     },
     button: {
         padding: 10,
