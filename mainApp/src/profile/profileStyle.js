@@ -7,7 +7,7 @@ const ProfileStyle = StyleSheet.create({
       alignItems: 'stretch',
       flexDirection: 'column',
       justifyContent: 'center',
-      height: "10%"
+      height: "5%"
     },
     button: {
         padding: 10,

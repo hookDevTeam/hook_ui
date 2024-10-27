@@ -7,7 +7,12 @@ const displaySpanPrimary = StyleSheet.create({
       alignItems: 'stretch',
       flexDirection: 'column',
       justifyContent: 'center',
-      marginTop: 200
+      height: '80%'
+    },
+
+    profileImage: {
+      width: "100%",
+      height: "40%"
     },
 
     h1: {

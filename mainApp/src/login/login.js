@@ -7,7 +7,7 @@ export default function Login() {
   return (
     <View style={loginStyle.container}>
       <Text style={loginStyle.text}>Open up App.js to start working on your app!</Text>
-      <Text style={loginStyle.text}>hello</Text>
+      <Text style={loginStyle.text}>login app</Text>
       <StatusBar style="auto" />
     </View>
   );

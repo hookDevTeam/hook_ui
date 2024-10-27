@@ -7,13 +7,15 @@ import { Card } from '@rneui/themed';
 import displaySpanPrimary from '../../common/styles/displaySpanPrimary'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'; // Import this
 
-export default function Profile() {
-    
+export default function Profile({navigation}) {
+  console.log(navigation);
   const buttonsList = [
-    {name: 'protfolio', id: '1'},
-    {name: 'accomplishments', id: '2'},
-    {name: 'upcoming', id: '3'}
+    {name: 'protfolio', id: '0'},
+    {name: 'accomplishments', id: '1'},
+    {name: 'upcoming', id: '2'}
   ];
+
+  const screensList = ["Login", "SignUp"]
 
   const artistName = "Keren Laor";
   const description = "Keren Laor is a singer songwritter, composer, producer and a software engineer" + 
@@ -26,6 +28,7 @@ export default function Profile() {
   return (
     <GestureHandlerRootView>
       <View style={displaySpanPrimary.verticalContainer}>
+        <Image source={require('./assets/images/artistpic.jpg') } style={displaySpanPrimary.profileImage}/>
         <Text style={displaySpanPrimary.h1}>{artistName}</Text>
         <Text style={displaySpanPrimary.text}>
           {description}
@@ -40,7 +43,7 @@ export default function Profile() {
             return (
                 <TouchableOpacity 
                   style={[ProfileStyle.button, { backgroundColor: '#540119' }]} // Set hex color
-                  onPress={() => alert(item.name)} // Add functionality here
+                  onPress={() => navigation.navigate(screensList[item.id])} // Add functionality here
                 >
                   <Text style={ProfileStyle.buttonText}>{item.name}</Text>
                 </TouchableOpacity>
