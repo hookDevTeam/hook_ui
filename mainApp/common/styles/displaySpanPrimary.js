@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { height } = Dimensions.get('window');
 
 const displaySpanPrimary = StyleSheet.create({
     verticalContainer: {
@@ -8,6 +10,17 @@ const displaySpanPrimary = StyleSheet.create({
       flexDirection: 'column',
       justifyContent: 'center',
       height: '80%'
+    },
+
+    verticalContainerFromStart: {
+      flex: 1,
+      backgroundColor: '#000000',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      height: height * 0.3,
+      alignItems: 'flex-start',
+      paddingLeft: 10,
+      gap: 0
     },
 
     profileImage: {
