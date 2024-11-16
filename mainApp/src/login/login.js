@@ -80,7 +80,15 @@ export default function Login({ navigation }) {
       <View style={displaySpanPrimary.verticalContainerFromStart}>
         <TouchableOpacity
           style={primaryButtonStyle.button} // Set hex color
-          onPress={() => navigation.navigate(profileScreen)} // Add functionality here
+          onPress={() => {
+            let userData = {
+              userName: state.userName,
+              email: state.email,
+              password: state.password,
+            };
+            console.log(userData);
+            navigation.navigate(profileScreen, { data: userData });
+          }} // Add functionality here
         >
           <Text style={primaryButtonStyle.buttonText}>Login</Text>
         </TouchableOpacity>
