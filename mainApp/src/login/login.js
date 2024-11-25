@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler"; // Import this
 import displaySpanPrimary from "../../common/styles/displaySpanPrimary";
@@ -6,25 +6,8 @@ import inputFieldStyle from "../../common/styles/inputField";
 import inputTextStyles from "../../common/styles/inputText";
 import primaryButtonStyle from "../../common/styles/primaryButton";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "EMAIL":
-      return { ...state, email: action.payload };
-    case "USERNAME":
-      return { ...state, userName: action.payload };
-    case "PASSWARD":
-      return { ...state, password: action.payload };
-    default:
-      return state;
-  }
-};
-
 export default function Login({ navigation }) {
-  const [state, dispatch] = useReducer(reducer, {
-    email: "",
-    userName: "",
-    password: "",
-  });
+  const [user, setUser] = useState({ userName: "", email: "", password: "" });
   const profileScreen = "Profile";
   return (
     <GestureHandlerRootView
@@ -40,9 +23,14 @@ export default function Login({ navigation }) {
             style={inputTextStyles.input}
             autoCapitalize="none"
             autoCorrect={false}
-            value={state.email}
+            value={user.email}
             maxLength={35}
-            onChangeText={(text) => dispatch({ type: "EMAIL", payload: text })}
+            onChangeText={(text) => {
+              setUser((prevUser) => ({
+                ...prevUser,
+                email: text,
+              }));
+            }}
           />
         </View>
         <View style={inputFieldStyle.container}>
@@ -51,11 +39,14 @@ export default function Login({ navigation }) {
             style={inputTextStyles.input}
             autoCapitalize="none"
             autoCorrect={false}
-            value={state.userName}
+            value={user.userName}
             maxLength={35}
-            onChangeText={(text) =>
-              dispatch({ type: "USERNAME", payload: text })
-            }
+            onChangeText={(text) => {
+              setUser((prevUser) => ({
+                ...prevUser,
+                userName: text,
+              }));
+            }}
           />
         </View>
         <View style={inputFieldStyle.container}>
@@ -64,11 +55,14 @@ export default function Login({ navigation }) {
             style={inputTextStyles.input}
             autoCapitalize="none"
             autoCorrect={false}
-            value={state.password}
+            value={user.password}
             maxLength={35}
-            onChangeText={(text) =>
-              dispatch({ type: "PASSWARD", payload: text })
-            }
+            onChangeText={(text) => {
+              setUser((prevUser) => ({
+                ...prevUser,
+                password: text,
+              }));
+            }}
           />
         </View>
         <View style={inputFieldStyle.container}>
@@ -81,13 +75,8 @@ export default function Login({ navigation }) {
         <TouchableOpacity
           style={primaryButtonStyle.button} // Set hex color
           onPress={() => {
-            let userData = {
-              userName: state.userName,
-              email: state.email,
-              password: state.password,
-            };
-            console.log(userData);
-            navigation.navigate(profileScreen, { data: userData });
+            console.log(user);
+            navigation.navigate(profileScreen, { data: user });
           }} // Add functionality here
         >
           <Text style={primaryButtonStyle.buttonText}>Login</Text>

@@ -3,9 +3,10 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { FlatList, GestureHandlerRootView } from "react-native-gesture-handler";
 import displaySpanPrimary from "../../common/styles/displaySpanPrimary";
 import ProfileStyle from "./profileStyle"; // Importing the styles
+import Api from "../../schemas/usersApi/src/Api.js";
 
 export default function Profile({ route }) {
-  console.log(route.params);
+  //const answer = Api.getUserByName("dani");
   const buttonsList = [
     { name: "protfolio", id: "0" },
     { name: "accomplishments", id: "1" },
