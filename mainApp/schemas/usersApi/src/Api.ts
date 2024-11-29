@@ -38,6 +38,7 @@ export interface UserProfile {
   email?: string;
   age?: number;
   userName?: string;
+  password?: string;
   descriptions?: string;
   favoriteGeneres?: string[];
   protfolio?: Protfolio[];

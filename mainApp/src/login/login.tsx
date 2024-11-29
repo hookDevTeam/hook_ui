@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler"; // Import this
 import displaySpanPrimary from "../../common/styles/displaySpanPrimary";
 import inputFieldStyle from "../../common/styles/inputField";
 import inputTextStyles from "../../common/styles/inputText";
 import primaryButtonStyle from "../../common/styles/primaryButton";
+import { UserProfileContext } from "../store/usersProfileContext";
 
 export default function Login({ navigation }) {
+  const usersProfileContext = useContext(UserProfileContext);
   const [user, setUser] = useState({ userName: "", email: "", password: "" });
+
   const profileScreen = "Profile";
   return (
     <GestureHandlerRootView
@@ -75,8 +78,8 @@ export default function Login({ navigation }) {
         <TouchableOpacity
           style={primaryButtonStyle.button} // Set hex color
           onPress={() => {
-            console.log(user);
-            navigation.navigate(profileScreen, { data: user });
+            usersProfileContext.loginToProfile(user);
+            navigation.navigate(profileScreen);
           }} // Add functionality here
         >
           <Text style={primaryButtonStyle.buttonText}>Login</Text>
