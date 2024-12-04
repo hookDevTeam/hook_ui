@@ -158,7 +158,7 @@ export enum ContentType {
 }
 
 export class HttpClient<SecurityDataType = unknown> {
-  public baseUrl: string = 'http://localhost:8080';
+  public baseUrl: string = 'https://localhost:8080';
   private securityData: SecurityDataType | null = null;
   private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private abortControllers = new Map<CancelToken, AbortController>();
@@ -325,9 +325,26 @@ export class HttpClient<SecurityDataType = unknown> {
 /**
  * @title Open API Generator Spring Boot Example
  * @version 1
- * @baseUrl http://localhost:8080
+ * @baseUrl https://localhost:8080
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  login = {
+    /**
+     * No description
+     *
+     * @name LoginList
+     * @summary Get user profile
+     * @request GET:/login
+     * @secure
+     */
+    loginList: (params: RequestParams = {}) =>
+      this.request<void, void>({
+        path: `/login`,
+        method: 'GET',
+        secure: true,
+        ...params,
+      }),
+  };
   api = {
     /**
      * @description fetch user profile by userName
@@ -336,11 +353,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @name GetUserByName
      * @summary Get user information by userName.
      * @request GET:/api/users/{userName}
+     * @secure
      */
     getUserByName: (userName: string, params: RequestParams = {}) =>
       this.request<UserResponse, Error>({
         path: `/api/users/${userName}`,
         method: 'GET',
+        secure: true,
         format: 'json',
         ...params,
       }),
@@ -352,12 +371,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @name CreateUserProfile
      * @summary post new user request
      * @request POST:/api/users/user
+     * @secure
      */
     createUserProfile: (data: NewUser, params: RequestParams = {}) =>
       this.request<NewUserProfileCreatedResponse, Error>({
         path: `/api/users/user`,
         method: 'POST',
         body: data,
+        secure: true,
         type: ContentType.Json,
         format: 'json',
         ...params,
