@@ -2,6 +2,7 @@ import { createContext, useReducer } from "react";
 import { UserProfile } from "../../schemas/usersApi/src/Api";
 
 const USER: UserProfile = {
+  userName: "",
   descriptions: "singer songwritter",
   favoriteGeneres: ["rock", "pop", "country"],
 };
@@ -17,7 +18,6 @@ function useProfileReducer(state, action) {
       const user: UserProfile = {
         ...state,
         userName: action.payload.userName,
-        email: action.payload.email,
       };
       return user;
     default:
