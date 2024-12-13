@@ -83,8 +83,8 @@ export default function Login({ navigation }) {
               .then((response) => {
                 console.log("response is:");
                 console.log(response);
-                usersProfileContext.loginToProfile(user);
-                navigation.navigate(profileScreen);
+                usersProfileContext.loginToProfile(response.data);
+                navigation.navigate("Main", { screen: "Profile" });
               })
               .catch((reason) => console.log(reason));
           }} // Add functionality here

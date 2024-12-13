@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "React Native: Android",
+      "request": "launch",
+      "type": "reactnative",
+      "platform": "android",
+      "target": "RFCNC0CCMVW",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "React Native: iOS",
+      "request": "launch",
+      "type": "reactnative",
+      "platform": "ios",
+      "target": "RFCNC0CCMVW",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
